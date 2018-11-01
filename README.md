@@ -38,10 +38,17 @@ cd $OPEN_FALCON_HOME
 ./open-falcon start agent
 ```
 
+Make sure from the dashboard UI that the new agent is successfully registered.
+
 ### Install this repo
 
 If `plugin` is not enabled in `$OPEN_FALCON_HOME/agent/config/cfg.json` yet,
 do it.
+After that restart the agent.
+```
+cd $OPEN_FALCON_HOME
+./open-falcon restart agent
+```
 
 Replace "git" to "https://github.com/btccom/open-falcon-plugins".
 
@@ -51,6 +58,11 @@ For example in order for `proc/60_pid.py` to work,
 a file named `60_pid.json` needs to be present.
 Read the comments of individual plugins for more details on the format and content of config files.
 
+Go to the Falcon dashboard web, find the host group where the server is
+and add the directories of plugins that you would like to activate into `plugins`.
+For instance if you wish to used the `60_pid.py` plugin,
+add `proc` into the list of `plugin dir`.
+
 ### Run
 
 Run the command below:
@@ -59,11 +71,8 @@ curl http://127.0.0.1:1988/plugin/update
 ```
 It will pull the git repo and start scheduling your plugins.
 
-If necessary, restart the agent.
-```
-cd $OPEN_FALCON_HOME
-./open-falcon restart agent
-```
+If `success` is returned,
+it means the github repo is pulled successfully and the agent is notified.
 
 ### Debug
 
