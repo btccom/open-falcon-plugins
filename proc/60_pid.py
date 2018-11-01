@@ -1,5 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+# Return 1 if the file is present, otherwise 0
+# metric: pid.file
+# tags: name=<process_name>
+#
+# Sample configuration file:
+# {
+#   "files": [
+#     "/home/some_path/workspace/some_app.pid"
+#   ]
+# }
 import json
 import os
 import sys

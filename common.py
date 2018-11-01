@@ -15,9 +15,9 @@ def _get_hostname():
     if os.path.exists(agent_conf_file):
         with open(agent_conf_file, 'r') as f:
             agent_cfg_json = json.load(f)
-            return agent_cfg_json['hostname']
-    else:
-        return socket.gethostname()
+            if 'hostname' in agent_cfg_json and agent_cfg_json['hostname'] != '':
+                return agent_cfg_json['hostname']
+    return socket.gethostname()
 
 
 HOSTNAME = _get_hostname()
